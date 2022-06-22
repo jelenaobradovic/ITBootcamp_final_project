@@ -18,19 +18,19 @@ public abstract class Basic_Test {
     protected Cities_Page citiesPage;
     protected LogIn_Page loginPage;
     protected SignUp_Page signupPage;
-    protected String baseURL= "https://vue-demo.daniel-avellaneda.com";
-
+    protected String baseURL = "https://vue-demo.daniel-avellaneda.com";
 
 
     @BeforeClass
 
     public void beforeClass() {
         System.setProperty("webdriver.chrome.driver",
-                "itbootcamp_final_project/src/main/resources/chromedriver.exe");
+                "src/main/resources/chromedriver.exe");
         this.driver = new ChromeDriver();
 
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().window().maximize();
 
         navPage = new Nav_Page(driver);
         loginPage = new LogIn_Page(driver);
