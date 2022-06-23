@@ -64,5 +64,7 @@ public class Nav_Page {
                 By.xpath("//div[contains(@class,'v-toolbar__items')]/a[4]"));
     }
 
-
+    public WebElement geth1HeaderOfPage(){
+        return driver.findElement(By.className("display-2"));
+    }
 }

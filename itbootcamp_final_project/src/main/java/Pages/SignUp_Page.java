@@ -12,22 +12,27 @@ public class SignUp_Page {
     }
 
     public WebElement getNameInputFieldAtSignUp() {
-        return driver.findElement(By.name("name"));
+        return driver.findElement(
+                By.name("name"));
     }
 
     public WebElement getEmailInputFieldAtSignUp() {
-        return driver.findElement(By.name("email"));
+        return driver.findElement(
+                By.name("email"));
     }
 
     public WebElement getPasswordInputFieldAtSignUp() {
-        return driver.findElement(By.name("password"));
+        return driver.findElement(
+                By.name("password"));
     }
 
     public WebElement getConfirmPasswordInputFieldAtSignUp() {
-        return driver.findElement(By.name("confirmPassword"));
+        return driver.findElement(
+                By.name("confirmPassword"));
     }
     public WebElement getSignMeUpButton ()
-    {return driver.findElement(By.className("v-btn--contained"));}
+    {return driver.findElement(
+            By.className("v-btn--contained"));}
 
 
 }

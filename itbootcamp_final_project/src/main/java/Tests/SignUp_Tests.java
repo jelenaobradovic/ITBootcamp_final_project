@@ -92,6 +92,37 @@ public class SignUp_Tests extends Basic_Test {
 
     }
 
+    @Test(priority = 40)
 
+    public void signUp() throws InterruptedException {
+        navPage.getSignUpButtonFromNav().click();
+
+        signupPage.
+                getNameInputFieldAtSignUp().
+                sendKeys("Jelena Obradovic");
+
+        signupPage.
+                getEmailInputFieldAtSignUp().
+                sendKeys("vuckovic.jelena4@gmail.com");
+
+        signupPage.
+                getPasswordInputFieldAtSignUp().
+                sendKeys("12345");
+
+        signupPage.
+                getConfirmPasswordInputFieldAtSignUp().
+                sendKeys("12345");
+
+        signupPage.getSignMeUpButton().click();
+
+
+       messagePopUpPage.waitForPopUpMessageCloseToBeClickable();
+
+
+       messagePopUpPage.getCloseButtonFromVerifyPopUpMessage().click();
+
+       navPage.getLogOutButtonFromNav().click();
+
+    }
 
 }

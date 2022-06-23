@@ -11,6 +11,7 @@ import java.time.Duration;
 public class MessagePopUp_Page {
 
     private WebDriver driver;
+    WebDriverWait wait;
 
     public MessagePopUp_Page(WebDriver driver) {
         this.driver = driver;
@@ -18,7 +19,7 @@ public class MessagePopUp_Page {
 
 
     public void waitForPopUpToBeVisible() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.
                 until(ExpectedConditions.visibilityOfElementLocated(
                         By.xpath("//div[contains(@class, 'v-snack__content')]")));
@@ -38,15 +39,10 @@ public class MessagePopUp_Page {
     }
 
     public void waitForVerifyPopUpMessage() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.
                 visibilityOfElementLocated(
                         By.xpath("//div[contains(text(), ' IMPORTANT: Verify your account ')]")));
-    }
-
-    public String verifyYourAccountMessageText() {
-        return driver.findElement(By.xpath("//div[contains(@class, 'v-card__title')]")).getText();
-
     }
 
     public WebElement getCloseButtonFromVerifyPopUpMessage() {
@@ -54,6 +50,11 @@ public class MessagePopUp_Page {
 
     }
 
+    public void waitForPopUpMessageCloseToBeClickable() {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.
+                elementToBeClickable(By.className("btnClose")));
+    }
 
 }
 
