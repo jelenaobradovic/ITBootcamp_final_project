@@ -28,8 +28,32 @@ public class MessagePopUp_Page {
     public WebElement getElementWithPopUpMsgText() {
         return driver.
                 findElement(
-                        By.xpath("//div[contains(@class,'v-snack__content')]/ul/li"));
+                        By.xpath
+                                ("//div[contains(@class,'v-snack__content')]/ul/li"));
+    }
+
+    public WebElement getCloseButtonFromLoginPopUp() {
+        return driver.findElement(
+                By.xpath("div[contains(@class,'v-snack__content')]/button"));
+    }
+
+    public void waitForVerifyPopUpMessage() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.
+                visibilityOfElementLocated(
+                        By.xpath("//div[contains(text(), ' IMPORTANT: Verify your account ')]")));
+    }
+
+    public String verifyYourAccountMessageText() {
+        return driver.findElement(By.xpath("//div[contains(@class, 'v-card__title')]")).getText();
+
+    }
+
+    public WebElement getCloseButtonFromVerifyPopUpMessage() {
+        return driver.findElement(By.className("btnClose"));
+
     }
 
 
 }
+

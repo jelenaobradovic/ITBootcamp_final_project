@@ -33,4 +33,11 @@ public class Nav_Page {
                 By.xpath("//a[contains(@class,'btnLogin')]"));
     }
 
+    public WebElement getSignUpButtonFromNav()
+    {
+        return driver.findElement(
+                By.xpath("//div[contains(@class,'v-toolbar__items')]/a[4]"));
+    }
+
+
 }
