@@ -114,14 +114,15 @@ public class Cities_Page {
 
     }
 
+
+
     public WebElement getDeletePopUpMessageOfSuccess() {
         return this.driver.findElement(By.className("success"));}
 
     public void waitForPopUpMessageForSuccededDeletion() {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(this.driver.findElement(By.className("success"))));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("success")));
     }
-
 
 
 }
