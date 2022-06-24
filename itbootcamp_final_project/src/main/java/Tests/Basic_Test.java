@@ -1,12 +1,18 @@
 package Tests;
 
 import Pages.*;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.io.FileHandler;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
+import java.io.File;
 import java.time.Duration;
 
 public abstract class Basic_Test {
@@ -46,6 +52,23 @@ public abstract class Basic_Test {
     public void beforeMethod() {
         driver.get(baseURL);
     }
+
+    @AfterMethod
+
+    public void takeScreenshot(ITestResult result) {
+        if (ITestResult.FAILURE == result.getStatus()) {
+            try {
+                TakesScreenshot ts = (TakesScreenshot) driver;
+                File source = ts.getScreenshotAs(OutputType.FILE);
+                FileHandler.copy(source, new File(
+                        "src/main/java/FailTestsScreenshots" + result.getName() + ".png"));
+                System.out.println("Screenshot taken");
+            } catch (Exception e) {
+                System.out.println("Exception while taking screenshot " + e.getMessage());
+            }
+        }
+    }
+
 
     @AfterClass
     public void afterClass() {
