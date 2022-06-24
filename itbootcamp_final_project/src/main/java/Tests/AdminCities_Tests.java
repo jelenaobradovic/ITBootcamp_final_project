@@ -46,7 +46,7 @@ public class AdminCities_Tests extends Basic_Test {
     @Test(priority = 30)
     public void createNewCity() {
 
-        String city = "JelenaObradovic's city";
+        String city = "Jelena Obradovic's city";
 
         navPage.getAdminButtonFromNav().click();
         navPage.getCitiesLinkFromAdminMenu().click();
@@ -66,7 +66,87 @@ public class AdminCities_Tests extends Basic_Test {
                 "[ERROR] Popup SaveCity window does't contains 'Saved successfully'");
     }
 
+    @Test(priority = 40)
+
+    public void editCity() throws InterruptedException {
+        String oldCityName = "Jelena Obradovic's city";
+        String newCityName = "Jelena Obradovic's city Edited";
+
+        navPage.getAdminButtonFromNav().click();
+        navPage.getCitiesLinkFromAdminMenu().click();
+        citiesPage.getSearchInputField().sendKeys(oldCityName);
+        citiesPage.waitForCertainNumberOfRows(1);
+        citiesPage.getEditButton(1).click();
+        citiesPage.getEditCityNameInputField().click();
+
+        citiesPage.selectTextAndReplace(newCityName);
+
+        citiesPage.getEditedCitySaveButton().click();
+        citiesPage.waitForPresenceOFSuccessSaveCityPopup();
+
+        Assert.assertTrue(citiesPage.
+                        getSuccessSaveCityPopUp().
+                        getText().
+                        contains("Saved successfully"),
+                "[ERROR]PopUp Message doesn't contain text 'Saved successfully'");
+    }
+
+    @Test(priority = 50)
+
+    public void searchCity() {
+
+        String newCityName = "Jelena Obradovic's city Edited";
+        navPage.getAdminButtonFromNav().click();
+        navPage.getCitiesLinkFromAdminMenu().click();
+        citiesPage.getSearchInputField().sendKeys(newCityName);
+        citiesPage.waitForCertainNumberOfRows(1);
+        Assert.assertEquals(
+                citiesPage.
+                        getCertainCell(1, 2).
+                        getText(), newCityName,
+                "[ERROR] Invalid search, city's names doesn't match");
 
 
+    }
 
-}
+    @Test(priority = 60)
+    public void deleteCity() {
+        String cityNameForDelete = "Jelena Obradovic's city Edited";
+
+        int rowNumber = 1;
+
+        int columnNumber = 2;
+
+        navPage.getAdminButtonFromNav().click();
+
+        navPage.getCitiesLinkFromAdminMenu().click();
+
+        citiesPage.getSearchInputField().sendKeys(cityNameForDelete);
+
+        citiesPage.waitForCertainNumberOfRows(1);
+
+        Assert.assertEquals(citiesPage.getCertainCell(1, 2).getText(),
+                cityNameForDelete,
+                "[ERROR]" +
+                        " In the " + rowNumber + "  of " + columnNumber +
+                        " column is not text " + cityNameForDelete + ".");
+
+        citiesPage.getDeleteButton(1).click();
+
+        citiesPage.waitForDeletePopUpDialogue();
+
+        citiesPage.getDeleteButtonFromPopUpDialogue().click();
+
+        citiesPage.waitForPopUpMessageForSuccededDeletion();
+
+        Assert.assertEquals(citiesPage.getDeletePopUpMessageOfSuccess().getText(),
+
+                "Deleted successfully",
+
+                "[ERROR] PopUp text for Delete success iz not valid");
+
+
+    }
+
+    }
+
