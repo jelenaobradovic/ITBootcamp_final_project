@@ -138,12 +138,8 @@ public class AdminCities_Tests extends Basic_Test {
         citiesPage.getDeleteButtonFromPopUpDialogue().click();
 
         citiesPage.waitForPopUpMessageForSuccededDeletion();
-
-        Assert.assertEquals(citiesPage.getDeletePopUpMessageOfSuccess().getText(),
-
-                "Deleted successfully",
-
-                "[ERROR] PopUp text for Delete success iz not valid");
+        Assert.assertTrue(citiesPage.getDeletePopUpMessageOfSuccess().getText().contains("Deleted successfu"),
+               "[ERROR] Not valid test");
 
 
     }
