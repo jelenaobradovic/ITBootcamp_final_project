@@ -104,10 +104,6 @@ public class LogIn_Tests extends Basic_Test {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        //  wait.until(ExpectedConditions.urlContains("/home"));
-
-        // Assert.assertTrue(driver.getCurrentUrl().contains("/home"),
-        //"[ERROR] Page URL does not contains /home");
 
         Assert.assertTrue(
                 wait.until(ExpectedConditions.urlContains("/home")),
